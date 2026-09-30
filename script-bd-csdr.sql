@@ -9,5 +9,20 @@ create table public.usuario (
   constraint usuario_pkey primary key (id_usuario)
 );
 
+CREATE TABLE dispositivo(
+ id_dispositivo SERIAL PRIMARY KEY,
+ usuario_id varchar(36),
+ modelo  varchar(100),
+ sistema_operacional varchar(50),
+ versao_so   varchar(50),
+ arquitetura_cpu  varchar(50),
+ nucleos_cpu   int,
+ frequencia_cpu_ghz  decimal(4,2),
+ memoria_ram_mb  int,
+ armazenamento_total_mb   bigint,
+ armazenamento_livre_mb   bigint,
+ coletado_em  timestamp
+);
+
 
 
