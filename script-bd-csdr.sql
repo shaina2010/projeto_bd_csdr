@@ -25,4 +25,15 @@ CREATE TABLE dispositivo(
 );
 
 
+CREATE TABLE sessao_usuario(
+ id_sessao_usuario SERIAL PRIMARY KEY,
+ usuario_id   varchar(36) not null,
+ token_jwt    varchar(500) not null,
+ ip_origem    varchar(45),
+ user_agent   text,
+ expira_em    timestamp not null,
+ criado_em    timestamp
+ );
+
+
 
