@@ -12,15 +12,15 @@ create table public.usuario (
 CREATE TABLE dispositivo(
  id_dispositivo SERIAL PRIMARY KEY,
  usuario_id varchar(36),
- modelo  varchar(100),
- sistema_operacional varchar(50),
- versao_so   varchar(50),
+ modelo  varchar(100) not null,
+ sistema_operacional varchar(50)not null,
+ versao_so   varchar(50)not null,
  arquitetura_cpu  varchar(50),
  nucleos_cpu   int,
  frequencia_cpu_ghz  decimal(4,2),
- memoria_ram_mb  int,
- armazenamento_total_mb   bigint,
- armazenamento_livre_mb   bigint,
+ memoria_ram_mb  int not null ,
+ armazenamento_total_mb   bigint not null,
+ armazenamento_livre_mb   bigint not null,
  coletado_em  timestamp
 );
 
