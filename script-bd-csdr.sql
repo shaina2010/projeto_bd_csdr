@@ -1,14 +1,13 @@
-CREATE TABLE professor(
- id_professor SERIAL PRIMARY KEY,
- nome varchar(255),
- email varchar(255),
- cpf varchar(15)
+create table public.usuario (
+  id_usuario serial not null,
+  nome character varying(100) not null,
+  email character varying(150) not null,
+  senha_hash character varying(255) not null,
+  perfil character varying(255) not null,
+  criado_em timestamp without time zone null,
+  atualizado_em timestamp without time zone null,
+  constraint usuario_pkey primary key (id_usuario)
 );
 
 
-SELECT * FROM professor;
 
-
-INSERT INTO professor (nome,email,cpf) VALUES('shaina','shaina.moise@escola.pr.gov.br','002005006');
-
-DELETE FROM professor WHERE id_professor = 2 ;
