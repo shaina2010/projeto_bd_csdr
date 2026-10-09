@@ -63,3 +63,15 @@ SELECT * FROM aplicativo;
 INSERT INTO aplicativo (nome , desenvolvedora , descricao , categoria , criado_por , criado_em ) 
 VALUES('whatsapp', 'meta', 'aplicativo de comunicacao', 'todas as idades', 'meta', '2009-02-24 14:00:00');
 
+CREATE TABLE requisito_aplicativo(
+ id_requisito_aplicativo SERIAL PRIMARY KEY,
+ aplicativo_id varchar(36) not null,
+ tipo_requisito varchar(255) not null,
+ so_minimo varchar(50) not null,
+ versao_so_minima varchar(50) not null,
+ ram_minima_mb int not null,
+ espaco_armazenamento_mb bigint not null,
+ frequencia_cpu_minima_ghz decimal(4,2),
+ nucleos_cpu_minimos int
+);
+
