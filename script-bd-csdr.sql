@@ -75,3 +75,16 @@ CREATE TABLE requisito_aplicativo(
  nucleos_cpu_minimos int
 );
 
+
+
+
+ CREATE TABLE relatorio_divergencia(
+ id_relatorio_divergencia SERIAL PRIMARY KEY,
+ usuario_id varchar(36) not null,
+ aplicativo_id varchar(36),
+ dispositivo_id varchar(36),
+ descricao_problema text not null,
+ status varchar(255),
+ criado_em timestamp
+
+);
