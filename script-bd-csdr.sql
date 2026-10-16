@@ -124,3 +124,14 @@ create table public.notificacao (
   criada_em timestamp without time zone null,
   constraint notificacao_pkey primary key (id)
 ) TABLESPACE pg_default;
+
+
+CREATE TABLE diagnostico_compatibilidade(
+id_diagnostico_compatibilidade SERIAL PRIMARY KEY,
+usuario_id int not null,
+dispositivo_id int not null,
+aplicativo_id int not null,
+status varchar (255) not null,
+detalhes_falhas json,
+executado_em timestamp
+);
