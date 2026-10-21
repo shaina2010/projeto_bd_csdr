@@ -4,11 +4,17 @@ create table public.usuario (
   email character varying(150) not null,
   senha_hash character varying(255) not null,
   perfil character varying(255) not null,
-  criado_em timestamp without time zone null,
-  atualizado_em timestamp without time zone null,
+  criado_em timestamp without time zone,
+  atualizado_em timestamp without time zone ,
   constraint usuario_pkey primary key (id_usuario)
 );
+select * from public.usuario
 
+INSERT INTO public.usuario (nome, email, senha_hash, perfil, criado_em, atualizado_em) VALUES
+('Ana Silva', 'ana.silva@email.com', '$2b$12$eImiTXuWVxfM37uY4JANjO3z565v8G6/2', 'Administrador', NOW(), NOW()),
+('Carlos Souza', 'carlos.souza@email.com', '$2b$12$L7R2m30mS4mS8mQ7mE1mO.7mR30mS4mS8', 'Gestor', NOW(), NOW()),
+('Mariana Costa', 'mariana.costa@email.com', '$2b$12$Z1x2c3v4b5n6m7asdfghjklpowqeyruti', 'Cliente', NOW(), NOW());
+ 
 CREATE TABLE dispositivo(
  id_dispositivo SERIAL PRIMARY KEY,
  usuario_id varchar(36),
