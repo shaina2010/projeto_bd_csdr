@@ -1,4 +1,4 @@
-create table public.usuario (
+create table usuario (
   id_usuario serial not null,
   nome character varying(100) not null,
   email character varying(150) not null,
@@ -10,25 +10,37 @@ create table public.usuario (
 );
 select * from public.usuario
 
-INSERT INTO public.usuario (nome, email, senha_hash, perfil, criado_em, atualizado_em) VALUES
+INSERT INTO usuario (nome, email, senha_hash, perfil, criado_em, atualizado_em) VALUES
 ('Ana Silva', 'ana.silva@email.com', '$2b$12$eImiTXuWVxfM37uY4JANjO3z565v8G6/2', 'Administrador', NOW(), NOW()),
 ('Carlos Souza', 'carlos.souza@email.com', '$2b$12$L7R2m30mS4mS8mQ7mE1mO.7mR30mS4mS8', 'Gestor', NOW(), NOW()),
 ('Mariana Costa', 'mariana.costa@email.com', '$2b$12$Z1x2c3v4b5n6m7asdfghjklpowqeyruti', 'Cliente', NOW(), NOW());
  
 CREATE TABLE dispositivo(
- id_dispositivo SERIAL PRIMARY KEY,
- usuario_id varchar(36),
- modelo  varchar(100) not null,
- sistema_operacional varchar(50)not null,
- versao_so   varchar(50)not null,
- arquitetura_cpu  varchar(50),
- nucleos_cpu   int,
- frequencia_cpu_ghz  decimal(4,2),
- memoria_ram_mb  int not null ,
- armazenamento_total_mb   bigint not null,
- armazenamento_livre_mb   bigint not null,
- coletado_em  timestamp
+  id_dispositivo SERIAL PRIMARY KEY,
+  fk_usuario int,
+  modelo  varchar(100) not null,
+  sistema_operacional varchar(50)not null,
+  versao_so   varchar(50)not null,
+  arquitetura_cpu  varchar(50),
+  nucleos_cpu   int,
+  frequencia_cpu_ghz  decimal(4,2),
+  memoria_ram_mb  int not null ,
+  armazenamento_total_mb   bigint not null,
+  armazenamento_livre_mb   bigint not null,
+  coletado_em  timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario)
 );
+select * from usuario
+
+select * from dispositivo
+
+
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (7, 'ThinkPad L14', 'Windows 11 Pro', '23H2', 'x86_64', 8, 2.10, 16384, 512000, 320500, '2026-10-21 10:00:00');
+
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (9, 'Ubuntu Server Proliant', 'Ubuntu LTS', '24.04', 'x86_64', 16, 3.50, 32768, 1024000, 850000, '2026-10-21 11:15:00');
+
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (8, 'Galaxy S24', 'Android', '14.0', 'ARM64', 8, 3.39, 8192, 256000, 120000, '2026-10-21 11:45:00');
+
 
 
 CREATE TABLE sessao_usuario(
