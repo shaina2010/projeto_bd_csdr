@@ -44,14 +44,33 @@ INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arq
 
 
 CREATE TABLE sessao_usuario(
- id_sessao_usuario SERIAL PRIMARY KEY,
- usuario_id   varchar(36) not null,
- token_jwt    varchar(500) not null,
- ip_origem    varchar(45),
- user_agent   text,
- expira_em    timestamp not null,
- criado_em    timestamp
- );
+id_sessao_usuario SERIAL PRIMARY KEY,
+fk_usuario int not null,
+token_jwt    varchar(500) not null,
+ip_origem    varchar(45),
+user_agent   text,
+expira_em    timestamp not null,
+criado_em    timestamp,
+constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario)
+);
+select * from sessao_usuario
+
+
+ INSERT INTO sessao_usuario (fk_usuario, token_jwt, ip_origem, user_agent, expira_em, criado_em)
+ VALUES (7, 'eyJhbGciOiJIUzI1NiIsInR5cjg0ODAwfQ.abc123xyz_example_token_pc', '192.168.1.50',
+ 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+ CURRENT_TIMESTAMP + INTERVAL '1 day', CURRENT_TIMESTAMP);
+
+
+ INSERT INTO sessao_usuario (fk_usuario, token_jwt, ip_origem, user_agent, expira_em, criado_em)
+ VALUES (8, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO456uvw_example_token_mobile',  '2001:0db8:85a3:0000:0000:8a2e:0370:7334',  'Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',  CURRENT_TIMESTAMP + INTERVAL '2 days',CURRENT_TIMESTAMP);
+
+
+INSERT INTO sessao_usuario (fk_usuario, token_jwt, ip_origem, user_agent, expira_em, criado_em)
+VALUES (9, 'eyJhbGciOiJIUzI1NiIsInR5zk4Njg0ODAwfQ.ghi789rst_example_token_iphone', '187.54.210.12',
+   'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1',
+   CURRENT_TIMESTAMP + INTERVAL '2 hours',  CURRENT_TIMESTAMP );
+
 
 CREATE TABLE termo_lgpd(
 id_termo_lgpd SERIAL PRIMARY KEY,
