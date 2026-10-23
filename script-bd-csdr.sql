@@ -79,10 +79,11 @@ conteudo text not null,
 data_publicacao timestamp
 );
 
-SELECT * FROM termo_lgpd;
+SELECT * FROM termo_lgpd
 
-INSERT INTO termo_lgpd (versao , conteudo , data_publicacao) VALUES('2.0','aplicativo','2026-01-19 12:00:00');
-
+INSERT INTO termo_lgpd (versao , conteudo , data_publicacao ) VALUES('2.0','aplicativo','2026-01-19 12:00:00');
+INSERT INTO termo_lgpd (versao , conteudo , data_publicacao ) VALUES('3.0','jogo','2026-04-12 12:00:00');
+INSERT INTO termo_lgpd (versao , conteudo , data_publicacao ) VALUES('5.0','aplicativo','2026-02-28 12:00:00');
 
 
 CREATE TABLE aplicativo (
