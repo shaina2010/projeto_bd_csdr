@@ -131,29 +131,29 @@ CREATE TABLE requisito_aplicativo(
 );
 
 
-CREATE TABLE id_consentimento_usuario(
- id_consentimento_usuario SERIAL PRIMARY KEY,
- usuario_id varchar(36) not null,
- termo_id int not null,
- aceito boolean not null,
- data_consentimento  timestamp
+CREATE TABLE consentimento_usuario(
+  id_consentimento_usuario SERIAL PRIMARY KEY,
+  fk_usuario  int not null,
+  fk_termo_lgpd  int not null,
+  aceito  boolean not null,
+  data_consentimento  timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario),
+  constraint fk_termo_lgpd foreign key (fk_termo_lgpd) references termo_lgpd (id_termo_lgpd)
 );
 
--- Exemplo 1: Usuário aceitou o termo de privacidade (ID 1)
-INSERT INTO consentimento_usuario (usuario_id, termo_id, aceito) 
-VALUES ('a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d', 1, TRUE);
-
--- Exemplo 2: Outro usuário aceitou o termo de uso do app (ID 2)
-INSERT INTO consentimento_usuario (usuario_id, termo_id, aceito) 
-VALUES ('f9e8d7c6-b5a4-3f2e-1d0c-9b8a7f6e5d4c', 2, TRUE);
-
--- Exemplo 3: Usuário rejeitou ou revogou o consentimento de cookies (ID 3)
-INSERT INTO consentimento_usuario (usuario_id, termo_id, aceito) 
-VALUES ('12345678-abcd-ef01-2345-6789abcdef01', 3, FALSE);
 
 
+INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
+VALUES (9, 1, true);
 
-SELECT * FROM consentimento_usuario;
+INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
+VALUES (7, 2, false);
+
+INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
+VALUES (8, 3, true);
+
+select * from consentimento_usuario
+
 
 
 create table public.notificacao (
