@@ -167,12 +167,30 @@ create table public.notificacao (
 ) TABLESPACE pg_default;
 
 
+
 CREATE TABLE diagnostico_compatibilidade(
 id_diagnostico_compatibilidade SERIAL PRIMARY KEY,
-usuario_id int not null,
-dispositivo_id int not null,
-aplicativo_id int not null,
+fk_usuario int not null,
+fk_dispositivo int not null,
+fk_aplicativo int not null,
 status varchar (255) not null,
-detalhes_falhas json,
-executado_em timestamp
+detalhes_falhas varchar(255),
+executado_em timestamp,
+constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario),
+constraint fk_dispositivo foreign key (fk_dispositivo) references dispositivo (id_dispositivo),
+constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo)
 );
+
+
+INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
+VALUES (7, 1, 1, 'Compatível', NULL, NOW());
+
+
+INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
+VALUES (8, 2, 3, 'Incompatível', 'Memória RAM insuficiente (Mínimo: 8GB, Disponível: 4GB).', NOW());
+
+
+INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
+VALUES (9, 3, 2, 'Incompatível', 'Versão do Android não homologada para este aplicativo.', NOW());
+
+select * from diagnostico_compatibilidade;
