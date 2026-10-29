@@ -155,16 +155,26 @@ VALUES (8, 3, true);
 select * from consentimento_usuario
 
 
+CREATE table notificacao (
+  id_notificacao SERIAL PRIMARY KEY,
+  fk_usuario   int not null,
+  titulo      varchar(150) not null,
+  mensagem     text not null,
+  lida         boolean,
+  criada_em    timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario)
+);
 
-create table public.notificacao (
-  id character varying(36) not null,
-  usuario_id character varying(36) not null,
-  titulo character varying(150) not null,
-  mensagem text not null,
-  lida boolean null,
-  criada_em timestamp without time zone null,
-  constraint notificacao_pkey primary key (id)
-) TABLESPACE pg_default;
+INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em) 
+VALUES (9, 'Bem-vindo ao sistema!', 'Olá! Seu cadastro foi realizado com sucesso. Explore nossa plataforma.', false, '2026-10-29 10:00:00');
+
+INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em)
+VALUES (8, 'Novo login detectado', 'Identificamos um novo acesso à sua conta a partir de um dispositivo não reconhecido.', false, '2026-10-29 11:15:30');
+
+INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em) 
+VALUES (7, 'Perfil atualizado', 'As alterações na sua foto de perfil e biografia foram salvas com sucesso.', true, '2026-10-29 12:00:00');
+
+select * from notificacao
 
 
 
