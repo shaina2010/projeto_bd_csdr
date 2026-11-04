@@ -131,16 +131,19 @@ select * from requisito_aplicativo
 
 
 
- CREATE TABLE relatorio_divergencia(
- id_relatorio_divergencia SERIAL PRIMARY KEY,
- usuario_id varchar(36) not null,
- aplicativo_id varchar(36),
- dispositivo_id varchar(36),
- descricao_problema text not null,
- status varchar(255),
- criado_em timestamp
-
+  CREATE TABLE relatorio_divergencia(
+  id_relatorio_divergencia SERIAL PRIMARY KEY,
+  fk_usuario int not null,
+  fk_aplicativo int,
+  fk_dispositivo int,
+  descricao_problema text not null,
+  status varchar(255),
+  criado_em timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario),
+  constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo),
+  constraint fk_dispositivo foreign key (fk_dispositivo) references dispositivo (id_dispositivo)
 );
+
 
 
 CREATE TABLE consentimento_usuario(
