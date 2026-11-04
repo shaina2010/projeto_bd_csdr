@@ -105,16 +105,28 @@ INSERT INTO aplicativo (nome , desenvolvedora , descricao , categoria , criado_p
 VALUES('instagram', 'meta', 'aplicativo de entretenimento', 'todas as idades', 'meta', '2005-01-14 14:00:00');
 
 CREATE TABLE requisito_aplicativo(
- id_requisito_aplicativo SERIAL PRIMARY KEY,
- aplicativo_id varchar(36) not null,
- tipo_requisito varchar(255) not null,
- so_minimo varchar(50) not null,
- versao_so_minima varchar(50) not null,
- ram_minima_mb int not null,
- espaco_armazenamento_mb bigint not null,
- frequencia_cpu_minima_ghz decimal(4,2),
- nucleos_cpu_minimos int
+  id_requisito_aplicativo SERIAL PRIMARY KEY,
+  fk_aplicativo int not null,
+  tipo_requisito varchar(255) not null,
+  so_minimo varchar(50) not null,
+  versao_so_minima varchar(50) not null,
+  ram_minima_mb int not null,
+  espaco_armazenamento_mb bigint not null,
+  frequencia_cpu_minima_ghz decimal(4,2),
+  nucleos_cpu_minimos int,
+  constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo)
 );
+
+INSERT INTO requisito_aplicativo (fk_aplicativo, tipo_requisito, so_minimo, versao_so_minima,  ram_minima_mb, espaco_armazenamento_mb, frequencia_cpu_minima_ghz, nucleos_cpu_minimos) 
+VALUES ( 1, 'Mínimo', 'Windows', '10 (64-bit)', 16384, 102400, 3.20, 6);
+
+INSERT INTO requisito_aplicativo ( fk_aplicativo, tipo_requisito, so_minimo, versao_so_minima, ram_minima_mb, espaco_armazenamento_mb, frequencia_cpu_minima_ghz, nucleos_cpu_minimos)
+VALUES (2, 'Mínimo', 'Android', '9.0 Pie', 2048, 150, 1.40, 4);
+
+INSERT INTO requisito_aplicativo ( fk_aplicativo, tipo_requisito, so_minimo, versao_so_minima, ram_minima_mb, espaco_armazenamento_mb, frequencia_cpu_minima_ghz, nucleos_cpu_minimos) 
+VALUES ( 3, 'Recomendado', 'macOS', '14 Sonoma',  32768, 25600, NULL, 8);
+
+select * from requisito_aplicativo
 
 
 
