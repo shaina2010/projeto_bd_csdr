@@ -34,11 +34,11 @@ select * from usuario;
 
 select * from dispositivo;
 
-INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (7, 'ThinkPad L14', 'Windows 11 Pro', '23H2', 'x86_64', 8, 2.10, 16384, 512000, 320500, '2026-10-21 10:00:00');
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (2, 'ThinkPad L14', 'Windows 11 Pro', '23H2', 'x86_64', 8, 2.10, 16384, 512000, 320500, '2026-10-21 10:00:00');
 
-INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (9, 'Ubuntu Server Proliant', 'Ubuntu LTS', '24.04', 'x86_64', 16, 3.50, 32768, 1024000, 850000, '2026-10-21 11:15:00');
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (3, 'Ubuntu Server Proliant', 'Ubuntu LTS', '24.04', 'x86_64', 16, 3.50, 32768, 1024000, 850000, '2026-10-21 11:15:00');
 
-INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (8, 'Galaxy S24', 'Android', '14.0', 'ARM64', 8, 3.39, 8192, 256000, 120000, '2026-10-21 11:45:00');
+INSERT INTO dispositivo (fk_usuario, modelo, sistema_operacional, versao_so, arquitetura_cpu, nucleos_cpu, frequencia_cpu_ghz, memoria_ram_mb, armazenamento_total_mb, armazenamento_livre_mb, coletado_em) VALUES (1, 'Galaxy S24', 'Android', '14.0', 'ARM64', 8, 3.39, 8192, 256000, 120000, '2026-10-21 11:45:00');
 
 CREATE TABLE sessao_usuario(
   id_sessao_usuario SERIAL PRIMARY KEY,
@@ -53,15 +53,15 @@ CREATE TABLE sessao_usuario(
 select * from sessao_usuario;
 
  INSERT INTO sessao_usuario (fk_usuario, token_jwt, ip_origem, user_agent, expira_em, criado_em)
- VALUES (7, 'eyJhbGciOiJIUzI1NiIsInR5cjg0ODAwfQ.abc123xyz_example_token_pc', '192.168.1.50',
+ VALUES (1, 'eyJhbGciOiJIUzI1NiIsInR5cjg0ODAwfQ.abc123xyz_example_token_pc', '192.168.1.50',
  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
  CURRENT_TIMESTAMP + INTERVAL '1 day', CURRENT_TIMESTAMP);
 
  INSERT INTO sessao_usuario (fk_usuario, token_jwt, ip_origem, user_agent, expira_em, criado_em)
- VALUES (8, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO456uvw_example_token_mobile',  '2001:0db8:85a3:0000:0000:8a2e:0370:7334',  'Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',  CURRENT_TIMESTAMP + INTERVAL '2 days',CURRENT_TIMESTAMP);
+ VALUES (2, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiO456uvw_example_token_mobile',  '2001:0db8:85a3:0000:0000:8a2e:0370:7334',  'Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',  CURRENT_TIMESTAMP + INTERVAL '2 days',CURRENT_TIMESTAMP);
 
 INSERT INTO sessao_usuario (fk_usuario, token_jwt, ip_origem, user_agent, expira_em, criado_em)
-VALUES (9, 'eyJhbGciOiJIUzI1NiIsInR5zk4Njg0ODAwfQ.ghi789rst_example_token_iphone', '187.54.210.12',
+VALUES (3, 'eyJhbGciOiJIUzI1NiIsInR5zk4Njg0ODAwfQ.ghi789rst_example_token_iphone', '187.54.210.12',
    'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1',
    CURRENT_TIMESTAMP + INTERVAL '2 hours',  CURRENT_TIMESTAMP );
 
@@ -155,13 +155,13 @@ CREATE TABLE consentimento_usuario(
 );
 
 INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
-VALUES (9, 1, true);
+VALUES (3, 1, true);
 
 INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
-VALUES (7, 2, false);
+VALUES (1, 2, false);
 
 INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
-VALUES (8, 3, true);
+VALUES (2, 3, true);
 
 select * from consentimento_usuario;
 
@@ -176,13 +176,13 @@ CREATE table notificacao (
 );
 
 INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em) 
-VALUES (9, 'Bem-vindo ao sistema!', 'Olá! Seu cadastro foi realizado com sucesso. Explore nossa plataforma.', false, '2026-10-29 10:00:00');
+VALUES (3, 'Bem-vindo ao sistema!', 'Olá! Seu cadastro foi realizado com sucesso. Explore nossa plataforma.', false, '2026-10-29 10:00:00');
 
 INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em)
-VALUES (8, 'Novo login detectado', 'Identificamos um novo acesso à sua conta a partir de um dispositivo não reconhecido.', false, '2026-10-29 11:15:30');
+VALUES (2, 'Novo login detectado', 'Identificamos um novo acesso à sua conta a partir de um dispositivo não reconhecido.', false, '2026-10-29 11:15:30');
 
 INSERT INTO notificacao (fk_usuario, titulo, mensagem, lida, criada_em) 
-VALUES (7, 'Perfil atualizado', 'As alterações na sua foto de perfil e biografia foram salvas com sucesso.', true, '2026-10-29 12:00:00');
+VALUES (1, 'Perfil atualizado', 'As alterações na sua foto de perfil e biografia foram salvas com sucesso.', true, '2026-10-29 12:00:00');
 
 select * from notificacao;
 
@@ -200,12 +200,12 @@ CREATE TABLE diagnostico_compatibilidade(
 );
 
 INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
-VALUES (7, 1, 1, 'Compatível', NULL, NOW());
+VALUES (1, 1, 1, 'Compatível', NULL, NOW());
 
 INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
-VALUES (8, 2, 3, 'Incompatível', 'Memória RAM insuficiente (Mínimo: 8GB, Disponível: 4GB).', NOW());
+VALUES (3, 2, 3, 'Incompatível', 'Memória RAM insuficiente (Mínimo: 8GB, Disponível: 4GB).', NOW());
 
 INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
-VALUES (9, 3, 2, 'Incompatível', 'Versão do Android não homologada para este aplicativo.', NOW());
+VALUES (2, 3, 2, 'Incompatível', 'Versão do Android não homologada para este aplicativo.', NOW());
 
 select * from diagnostico_compatibilidade;
